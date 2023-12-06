@@ -1,0 +1,6 @@
+- hosts: jenkins_host
+  gather_facts: yes
+  become: yes
+  tasks:
+    - include_tasks: tasks/get_jenkins.yml
+    - include_tasks: tasks/configure_jenkins.yml

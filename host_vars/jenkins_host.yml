@@ -1,0 +1,9 @@
+ansible_host: 192.168.56.125
+ansible_user: vagrant
+jenkins_version: 2.401.3
+java_options: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djenkins.install.runSetupWizard=false -Djava.io.tmpdir=/var/cache/jenkins/tmp/ -Dorg.apache.commons.jelly.tags.fmt.timeZone=America/New_York -Duser.timezone=America/New_York"'
+jenkins_options: 'JENKINS_ARGS="--pluginroot=/var/cache/jenkins/plugins"'
+jenkins_directories:
+  - '/var/cache/jenkins/tmp'
+  - '/var/cache/jenkins/heapdumps'
+  - '/var/lib/jenkins/plugins'

@@ -1,0 +1,45 @@
+- name: add Adoptium apt key
+  apt_key:
+    url: https://packages.adoptium.net/artifactory/api/gpg/key/public
+    state: present
+
+- name: add Adoptium repository
+  apt_repository:
+    repo: deb https://packages.adoptium.net/artifactory/deb focal main
+    state: present
+
+- name: Install common software
+  apt:
+    name:
+      - temurin-17-jdk
+      - apt-transport-https 
+      - ca-certificates 
+      - curl 
+      - git
+      - gnupg
+      - gnupg-agent 
+      - software-properties-common
+      - unzip
+      - wget
+    state: latest
+
+- name: add Jenkins apt key
+  ansible.builtin.apt_key:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    state: present
+
+- name: Jenkins deb repository
+  ansible.builtin.apt_repository:
+    repo: deb https://pkg.jenkins.io/debian-stable binary/
+    state: present
+
+- name: Install Jenkins
+  apt:
+    name:
+      - "jenkins={{ jenkins_version }}"
+    state: present
+
+- name: Stop Jenkins (autostarts after install)
+  systemd:
+    name: jenkins
+    state: stopped
